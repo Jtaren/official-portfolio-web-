@@ -2,20 +2,281 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Colors Default Light Theme */
+:root {
+  --green: #7ac142;
+  --white: #fff;
+
+  /* Misc */
+  --curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+
+  --background-color: white;
+  --text-color: #2B3440;
+  --not-important: #878C98;
+  --container-color: #F8F8FA;
+  --skill-card: #E5E7EB;
+  --cta: #4902FF;
+  --skill-image: #E5E7EB;
+  --text-less-important: #404853;
+
+  --blue-container-color: #DBEAFE;
+  --blue-border-color: #93C5FE;
+
+  /* sugar-high code highlights */
+  --sh-class: #2d5e9d;
+  --sh-identifier: #354150;
+  --sh-sign: #8996a3;
+  --sh-property: #0550ae;
+  --sh-entity: #249a97;
+  --sh-jsxliterals: #6266d1;
+  --sh-string: #00a99a;
+  --sh-keyword: #f47067;
+  --sh-comment: #a19595;
+
+  /* blog */
+  --pad-x: 18px;
+  --pad-y: 24px;
+}
+
+/* Dark Theme */
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --green: #fff;
+  --white: #2B3440;
+
+
+  --background-color: #121212;
+  /* Dark black background */
+  --text-color: #E2E8F0;
+  /* Light grayish white for good contrast */
+  --not-important: #A0AEC0;
+  /* Muted light gray for less emphasis */
+  --container-color: #1F1F1F;
+  /* A slightly lighter black/gray for containers */
+  --skill-card: #2A2A2A;
+  /* Darker gray/black for skill cards */
+  --cta: #1D72B8;
+  /* A blue accent for CTA, but still dark enough */
+  --skill-image: #2A2A2A;
+  --text-less-important: #cbd0d8;
+
+  --blue-container-color: #1E3A8A;
+  --blue-border-color: #61A5FA;
+
+  /* sugar-high code highlights - dark mode */
+  --sh-class: #88baff;
+  /* Soft blue for class names */
+  --sh-identifier: #c0c8d0;
+  /* Light gray for identifiers */
+  --sh-sign: #8b99a6;
+  /* Muted gray-blue for signs */
+  --sh-property: #68b4ff;
+  /* Bright blue for properties */
+  --sh-entity: #4cd1b4;
+  /* Soft teal for entities */
+  --sh-jsxliterals: #9a99ff;
+  /* Light purple-blue for JSX literals */
+  --sh-string: #38d39f;
+  /* Bright green for strings */
+  --sh-keyword: #ff7b72;
+  /* Vibrant red-orange for keywords */
+  --sh-comment: #7c858f;
+  /* Muted gray for comments */
+
+}
+
+.prose .anchor {
+  @apply absolute invisible no-underline;
+
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 100%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  @apply visible;
+}
+
+.prose .anchor:after {
+  @apply text-neutral-300 dark:text-neutral-700;
+  content: "#";
+}
+
+.prose *:hover>.anchor {
+  @apply visible;
+}
+
+.prose pre {
+  @apply bg-[color:var(--container-color)] border border-[color:var(--skill-card)] rounded-md px-[var(--pad-x)] py-[var(--pad-y)];
+  overflow-x: auto;
+}
+
+.prose code {
+  @apply px-1 py-0.5 rounded-md bg-[color:var(--container-color)] border border-[color:var(--skill-card)];
+  overflow-x: scroll;
+}
+
+.prose pre code {
+  @apply p-0 bg-[color:var(--container-color)];
+  border: initial;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.prose p {
+  @apply my-4;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply mt-6 mb-2 font-bold;
+}
+
+.prose h1 {
+  @apply font-extrabold;
+}
+
+.prose h2 {
+  @apply font-bold;
+}
+
+.prose h3 {
+  @apply text-[19px] font-bold;
+}
+
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply font-medium;
+}
+
+.prose ul {
+  @apply list-disc pl-6;
+}
+
+.prose ol {
+  @apply list-decimal pl-6;
+}
+
+.prose a {
+  @apply text-[color:var(--cta)];
+}
+
+p,
+.text-less-important {
+  color: var(--text-less-important);
+}
+
+.not-important {
+  color: var(--not-important);
+
+}
+
+.skill-card {
+  background-color: var(--skill-card);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+  background: var(--background-color);
+}
+
+h1 {
+  font-family: var(--font-gabriella), sans-serif;
+  font-size: 39px;
+  line-height: 1.25;
+}
+
+h1.title {
+  font-family: sans-serif !important;
+  font-weight: 600;
+  font-size: 27px;
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: 23px;
+  color: var(--text-color);
+}
+
+h2.title {
+  font-family: var(--font-gabriella), sans-serif;
+  font-size: 27px;
+}
+
+div.project-card {
+  background-color: var(--container-color);
+  border-bottom-width: 2px;
+  border-bottom-color: var(--container-color)
+}
+
+h2.description {
+  font-size: 19px;
+  color: var(--text-color);
+
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: var(--white);
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px var(--green);
+  animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: var(--green);
+  fill: none;
+  animation: stroke 0.6s var(--curve) forwards;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s var(--curve) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px var(--green);
+  }
 }
