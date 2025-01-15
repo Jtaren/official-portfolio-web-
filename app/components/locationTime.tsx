@@ -1,5 +1,5 @@
 'use client'
-import { clock3, MapPin } from 'lucide-react';
+import { Clock3, MapPin } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 
 export const LocationTime = () => {
